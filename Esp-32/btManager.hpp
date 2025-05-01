@@ -15,7 +15,7 @@ class btManager{
       serialBt.println(message);
     }
     
-    char* Receieve() {
+    void Receieve(char* currentLine) {
       if(serialBt.available()) {
         int character = serialBt.read();
 
@@ -27,34 +27,14 @@ class btManager{
           strcpy(currentLine, newLine);
           newLineIndex = 0; // Reset index
           newLine[0] = '\0'; // Clear the string
-          return currentLine;
         }
       }
-      return nullptr;
     }
     
   private:
     BluetoothSerial serialBt;
     HardwareSerial serial;
-    char currentLine[128] = "";
-    char newLine[128] = "";
+    char newLine[20] = "";
     int newLineIndex = 0;
-
-    void processMessage(const char* message)
-    {
-      if(strcmp(message, "forward") == 0){
-
-      }
-      else if(strcmp(message, "reverse") == 0){
-
-      }
-
-      if(strcmp(message, "left") == 0){
-        
-      }
-      else if(strcmp(message, "right") == 0){
-
-      }
-    }
     
 };
