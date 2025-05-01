@@ -10,11 +10,12 @@ class btManager{
       serialBt.begin("ESP-32");
       serial.println("Bluetooth ready. Waiting for data...");
     } 
+    
     void Send(char* message){
       serialBt.println(message);
     }
     
-    void Receieve() {
+    char* Receieve() {
       if(serialBt.available()) {
         int character = serialBt.read();
 
@@ -24,12 +25,12 @@ class btManager{
         } else if (character == '\n') {
 
           strcpy(currentLine, newLine);
-          processMessage(currentLine);
           newLineIndex = 0; // Reset index
           newLine[0] = '\0'; // Clear the string
-
+          return currentLine;
         }
       }
+      return nullptr;
     }
     
   private:
@@ -41,7 +42,19 @@ class btManager{
 
     void processMessage(const char* message)
     {
+      if(strcmp(message, "forward") == 0){
 
+      }
+      else if(strcmp(message, "reverse") == 0){
+
+      }
+
+      if(strcmp(message, "left") == 0){
+        
+      }
+      else if(strcmp(message, "right") == 0){
+
+      }
     }
     
 };
