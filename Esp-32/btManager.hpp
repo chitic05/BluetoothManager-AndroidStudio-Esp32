@@ -2,13 +2,16 @@
 #include <BluetoothSerial.h>
 #include <cstring>
 
+BluetoothSerial serialBt;
 
 class btManager{
   public:
     btManager(HardwareSerial& serial) : serial(serial){
-      serial.begin(9600);
-      serialBt.begin("ESP-32");
-      serial.println("Bluetooth ready. Waiting for data...");
+      if (!serialBt.begin("ESP-32")) {
+        serial.println("An error occurred initializing Bluetooth");
+      } else {
+        serial.println("Bluetooth initialized");
+      }
     } 
     
     void Send(char* message){
@@ -25,6 +28,7 @@ class btManager{
         } else if (character == '\n') {
 
           strcpy(currentLine, newLine);
+          serial.println(currentLine);
           newLineIndex = 0; // Reset index
           newLine[0] = '\0'; // Clear the string
         }
@@ -32,9 +36,9 @@ class btManager{
     }
     
   private:
-    BluetoothSerial serialBt;
+    
     HardwareSerial serial;
-    char newLine[20] = "";
+    char newLine[128] = "";
     int newLineIndex = 0;
     
 };
