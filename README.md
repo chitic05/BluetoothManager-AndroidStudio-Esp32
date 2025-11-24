@@ -157,10 +157,3 @@ This repository contains a simple Bluetooth manager split between an Android-sid
 **Build & Run (high-level)**
 - ESP32: compile and flash your firmware that includes `btManager.hpp`.
 - Android: import the Android files into an Android Studio project, run on a device with Bluetooth, grant permissions, and pair/connect to the ESP32 device.
-
-**License & Notes**
-- This repository contains small helper code snippets intended as examples. Check individual files for author/license details.
-- For any issues or questions about how this was integrated into `Embedded-Mini-Car`, refer to that repository or open an issue in that repo.
-
-If you'd like, I can also:
-- add a short example usage snippet for `BluetoothManager.java` and `btManager.hpp`,
